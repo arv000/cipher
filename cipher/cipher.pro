@@ -27,11 +27,17 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         view/mainwindow.cpp \
-    view/main_widget.cpp
+    view/main_widget.cpp \
+    view/encryption_hash_view.cpp \
+    view/encryption_asymmetric_view.cpp \
+    view/encryption_symmetric_view.cpp
 
 HEADERS += \
         view/mainwindow.h \
-    view/main_widget.h
+    view/main_widget.h \
+    view/encryption_hash_view.h \
+    view/encryption_asymmetric_view.h \
+    view/encryption_symmetric_view.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

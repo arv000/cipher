@@ -4,6 +4,10 @@
 #include <QHBoxLayout>
 #include <QStackedWidget>
 #include <QDebug>
+#include "encryption_asymmetric_view.h"
+#include "encryption_hash_view.h"
+#include "encryption_symmetric_view.h"
+
 MainWidget::MainWidget(QWidget *parent)
     : QWidget(parent)
     , BtnSymmetricEncryption_(new QPushButton("对称加密"))
@@ -12,6 +16,9 @@ MainWidget::MainWidget(QWidget *parent)
     , LayoutMain_(new QHBoxLayout())
     , LayoutBts_(new QVBoxLayout())
     , StackedWidget_(new QStackedWidget(this))
+    , encryptionAsymmetricView_(new EncryptionAsymmetricView())
+    , encryptionSymmetricView_(new EncryptionSymmetricView())
+    , encryptionHashView_(new EncryptionHashView())
 {
     init();
 }
@@ -34,7 +41,12 @@ void MainWidget::initUI()
     LayoutBts_->addStretch();
 
     LayoutMain_->addLayout(LayoutBts_);
+
+    StackedWidget_->addWidget(encryptionAsymmetricView_);
+    StackedWidget_->addWidget(encryptionSymmetricView_);
+    StackedWidget_->addWidget(encryptionHashView_);
     LayoutMain_->addWidget(StackedWidget_);
+
     setLayout(LayoutMain_);
 }
 
@@ -46,12 +58,18 @@ void MainWidget::init()
 
 void MainWidget::slotOpenSymmetricEncryptionView()
 {
+    StackedWidget_->setCurrentIndex(0);
     qInfo() << "slotOpenSymmetricEncryptionView";
 }
 
 void MainWidget::slotOpenAsymmetricEncryptionView()
 {
+    StackedWidget_->setCurrentIndex(1);
     qInfo() << "slotOpenAsymmetricEncryptionView";
 }
 
-void MainWidget::slotOpenHashView() { qInfo() << "slotOpenHashView"; }
+void MainWidget::slotOpenHashView()
+{
+    StackedWidget_->setCurrentIndex(2);
+    qInfo() << "slotOpenHashView";
+}

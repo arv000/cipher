@@ -8,6 +8,9 @@ class MainWindow : public QMainWindow {
    private:
     MainWidget *m_mainWidiget;
 
+   private:
+    void initUI();
+
    public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();

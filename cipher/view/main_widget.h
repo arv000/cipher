@@ -6,6 +6,9 @@ class QPushButton;
 class QVBoxLayout;
 class QHBoxLayout;
 class QStackedWidget;
+class EncryptionAsymmetricView;
+class EncryptionSymmetricView;
+class EncryptionHashView;
 class MainWidget : public QWidget {
     Q_OBJECT
    public:
@@ -18,6 +21,10 @@ class MainWidget : public QWidget {
     QHBoxLayout *LayoutMain_;
     QVBoxLayout *LayoutBts_;
     QStackedWidget *StackedWidget_;
+
+    EncryptionAsymmetricView *encryptionAsymmetricView_;
+    EncryptionSymmetricView *encryptionSymmetricView_;
+    EncryptionHashView *encryptionHashView_;
 
    private:
     void initConnect();
