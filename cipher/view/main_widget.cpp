@@ -13,6 +13,7 @@ MainWidget::MainWidget(QWidget *parent)
     , BtnSymmetricEncryption_(new QPushButton("对称加密"))
     , BtnAsymmetricEncryption_(new QPushButton("非对称加密"))
     , BtnHash_(new QPushButton("Hash值计算"))
+    , BtnCertificate_(new QPushButton("证书管理"))
     , LayoutMain_(new QHBoxLayout())
     , LayoutBts_(new QVBoxLayout())
     , StackedWidget_(new QStackedWidget(this))
@@ -38,6 +39,7 @@ void MainWidget::initUI()
     LayoutBts_->addWidget(BtnSymmetricEncryption_);
     LayoutBts_->addWidget(BtnAsymmetricEncryption_);
     LayoutBts_->addWidget(BtnHash_);
+    LayoutBts_->addWidget(BtnCertificate_);
     LayoutBts_->addStretch();
 
     LayoutMain_->addLayout(LayoutBts_);

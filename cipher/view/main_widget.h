@@ -18,6 +18,7 @@ class MainWidget : public QWidget {
     QPushButton *BtnSymmetricEncryption_;
     QPushButton *BtnAsymmetricEncryption_;
     QPushButton *BtnHash_;
+    QPushButton *BtnCertificate_;
     QHBoxLayout *LayoutMain_;
     QVBoxLayout *LayoutBts_;
     QStackedWidget *StackedWidget_;
