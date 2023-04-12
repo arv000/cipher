@@ -9,6 +9,7 @@ class QHBoxLayout;
 class QVBoxLayout;
 class AbstractEncytion;
 class QStackedWidget;
+class EncytionDataJob;
 class EncryptionHashBaseView : public QWidget {
     Q_OBJECT
    public:
@@ -25,6 +26,7 @@ class EncryptionHashBaseView : public QWidget {
     EncrytionDataView *DataView_;
     EncrytionFileView *fileView_;
     QStackedWidget *stack_;
+
    signals:
 
    public slots:

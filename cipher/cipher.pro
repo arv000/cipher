@@ -37,7 +37,9 @@ SOURCES += \
         tools/encytion_md5.cpp \
         tools/encytion_sha256.cpp \
         tools/encytion_sm3.cpp \
-        view/encryption_hash_base_view.cpp
+        view/encryption_hash_base_view.cpp \
+    tools/encytion_data_job.cpp \
+    tools/encytion_file_job.cpp
 
 HEADERS += \
         view/mainwindow.h \
@@ -51,7 +53,9 @@ HEADERS += \
         tools/encytion_md5.h \
         tools/encytion_sha256.h \
         tools/encytion_sm3.h \
-        view/encryption_hash_base_view.h
+        view/encryption_hash_base_view.h \
+    tools/encytion_data_job.h \
+    tools/encytion_file_job.h
 
 INCLUDEPATH += ./3rdparty/openssl/include/
 

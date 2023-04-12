@@ -4,8 +4,10 @@
 #include <QVBoxLayout>
 #include "tools/abstract_encytion.h"
 #include "tools/encytion_md5.h"
+#include "tools/encytion_data_job.h"
+#include <QDebug>
 EncrytionDataView::EncrytionDataView(AbstractEncytion *encytion)
-    : encytion_(encytion)
+    : encytionJob_(new EncytionDataJob(encytion))
     , TxtEditMingWen_(new QTextEdit)
     , TxtEditMiWen_(new QTextEdit)
     , BtnDoWork_(new QPushButton("加密"))
@@ -32,9 +34,18 @@ void EncrytionDataView::initConnect()
 {
     connect(BtnDoWork_, &QPushButton::clicked, this,
             &EncrytionDataView::slotClickDoWork);
+    connect(encytionJob_, &EncytionDataJob::sigFinish, this,
+            &EncrytionDataView::slotEncrytionFinish);
 }
 
 void EncrytionDataView::slotClickDoWork()
 {
-    encytion_->EncytonData("slotClickDoWork");
+    qInfo() << " EncrytionDataView::slotClickDoWork";
+    encytionJob_->setData(TxtEditMingWen_->toPlainText());
+    encytionJob_->start();
+}
+
+void EncrytionDataView::slotEncrytionFinish(QString out)
+{
+    qInfo() << "out:" << out;
 }

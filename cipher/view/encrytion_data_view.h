@@ -6,11 +6,13 @@ class AbstractEncytion;
 class QTextEdit;
 class QPushButton;
 class QVBoxLayout;
+class EncytionDataJob;
 class EncrytionDataView : public QWidget {
     Q_OBJECT
    public:
     explicit EncrytionDataView(AbstractEncytion *encytion);
-    AbstractEncytion *encytion_;
+
+    EncytionDataJob *encytionJob_;
 
    private:
     void init();
@@ -25,6 +27,7 @@ class EncrytionDataView : public QWidget {
    public slots:
 
     void slotClickDoWork();
+    void slotEncrytionFinish(QString out);
 };
 
 #endif  // ENCRYTION_DATA_VIEW_H
