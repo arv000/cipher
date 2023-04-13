@@ -14,8 +14,8 @@ class EncytionSM3 : public AbstractEncytion {
 
     // AbstractEncytion interface
    public:
-    QString EncytonData(QString string);
-    int EncytonFile(QString inFilePath, QString outFilePath);
+    QString EncytonData(QString string) override;
+    QString EncytonFile(QString inFilePath) override;
 };
 
 #endif  // ENCYTION_SM3_H

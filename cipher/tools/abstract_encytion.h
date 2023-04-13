@@ -8,7 +8,7 @@ class AbstractEncytion : public QObject {
    public:
     explicit AbstractEncytion(QObject *parent = nullptr);
     virtual QString EncytonData(QString string) = 0;
-    virtual int EncytonFile(QString inFilePath, QString outFilePath) = 0;
+    virtual QString EncytonFile(QString inFilePath) = 0;
 };
 
 #endif  // ABSTRACT_ENCYTION_H

@@ -3,13 +3,17 @@
 
 #include <QObject>
 #include <QThread>
+class AbstractEncytion;
 class EncytionFileJob : public QThread {
     Q_OBJECT
    public:
-    explicit EncytionFileJob(QObject *parent = nullptr);
-
+    explicit EncytionFileJob(AbstractEncytion *encytion);
+    AbstractEncytion *encytion_;
+    QString strInFilePath_;
+    QString strOutFilePath_;
+    void setData(QString strInFilePath);
    signals:
-    void sigFinish(int status);
+    void sigFinish(QString out);
    public slots:
 
     // QThread interface

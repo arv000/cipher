@@ -5,7 +5,7 @@
 #include <openssl/evp.h>
 #include <openssl/sha.h>
 #include "tools.h"
-EncytionSha256::EncytionSha256(QObject *parent) {}
+EncytionSha256::EncytionSha256(QObject *) {}
 
 QString EncytionSha256::EncytonData(QString string)
 {
@@ -17,16 +17,40 @@ QString EncytionSha256::EncytonData(QString string)
     // hash计算
     EVP_DigestUpdate(ctx, string.toStdString().c_str(),
                      string.toStdString().length());
-    unsigned char result[SHA_DIGEST_LENGTH] = {};
+    unsigned char result[SHA256_DIGEST_LENGTH] = {};
     EVP_DigestFinal_ex(ctx, result, &len);
     //    EVP_MD_CTX_init(&ctx);
     QString res = Tools::CharToHex(result, len);
     return res;
 }
 
-int EncytionSha256::EncytonFile(QString inFilePath, QString outFilePath)
+QString EncytionSha256::EncytonFile(QString inFilePath)
 {
     qInfo() << "EncytionSha256 EncytonFile" << inFilePath;
-    qInfo() << "EncytionSha256 EncytonFile" << outFilePath;
-    return 0;
+    unsigned int len = 0;
+
+    EVP_MD_CTX *ctx = EVP_MD_CTX_new();
+    EVP_DigestInit_ex(ctx, EVP_sha256(), nullptr);
+    FILE *fp = nullptr;
+    fp = fopen(inFilePath.toStdString().c_str(), "rb+");
+    if (nullptr == fp) {
+        return "";
+    }
+    char szDataBuff[SHA256_DIGEST_LENGTH];
+    unsigned long nLineLen;
+    unsigned long a = 1;
+    while (!feof(fp)) {
+        memset(szDataBuff, 0x00, sizeof(szDataBuff));
+        nLineLen = fread(szDataBuff, a,
+                         static_cast<unsigned long>(SHA256_DIGEST_LENGTH), fp);
+        if (nLineLen) {
+            EVP_DigestUpdate(ctx, szDataBuff, static_cast<int>(nLineLen));
+        }
+    }
+    fclose(fp);
+    unsigned char result[SHA256_DIGEST_LENGTH] = {};
+    EVP_DigestFinal_ex(ctx, result, &len);
+    EVP_MD_CTX_free(ctx);
+    QString res = Tools::CharToHex(result, len);
+    return res;
 }
