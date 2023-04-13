@@ -1,10 +1,12 @@
 #include "encytion_md5.h"
 #include <QtDebug>
+#include <QFile>
+#include <QDataStream>
 #include <openssl/dh.h>
 #include <openssl/evp.h>
 #include <openssl/md5.h>
 #include "tools.h"
-EncytionMD5::EncytionMD5(QObject *parent) {}
+EncytionMD5::EncytionMD5(QObject *) {}
 
 QString EncytionMD5::EncytonData(QString string)
 {
@@ -18,14 +20,38 @@ QString EncytionMD5::EncytonData(QString string)
                      string.toStdString().length());
     unsigned char result[MD5_DIGEST_LENGTH] = {};
     EVP_DigestFinal_ex(ctx, result, &len);
-    //    EVP_MD_CTX_init(&ctx);
     QString res = Tools::CharToHex(result, len);
+    EVP_MD_CTX_free(ctx);
     return res;
 }
 
-int EncytionMD5::EncytonFile(QString inFilePath, QString outFilePath)
+QString EncytionMD5::EncytonFile(QString inFilePath)
 {
     qInfo() << "EncytionMD5 EncytonFile" << inFilePath;
-    qInfo() << "EncytionMD5 EncytonFile" << outFilePath;
-    return 0;
+    unsigned int len = 0;
+
+    EVP_MD_CTX *ctx = EVP_MD_CTX_new();
+    EVP_DigestInit_ex(ctx, EVP_md5(), nullptr);
+    FILE *fp = nullptr;
+    fp = fopen(inFilePath.toStdString().c_str(), "rb+");
+    if (nullptr == fp) {
+        return "";
+    }
+    char szDataBuff[MD5_DIGEST_LENGTH];
+    unsigned long nLineLen;
+    unsigned long a = 1;
+    while (!feof(fp)) {
+        memset(szDataBuff, 0x00, sizeof(szDataBuff));
+        nLineLen = fread(szDataBuff, a,
+                         static_cast<unsigned long>(MD5_DIGEST_LENGTH), fp);
+        if (nLineLen) {
+            EVP_DigestUpdate(ctx, szDataBuff, static_cast<int>(nLineLen));
+        }
+    }
+    fclose(fp);
+    unsigned char result[MD5_DIGEST_LENGTH] = {};
+    EVP_DigestFinal_ex(ctx, result, &len);
+    EVP_MD_CTX_free(ctx);
+    QString res = Tools::CharToHex(result, len);
+    return res;
 }

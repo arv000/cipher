@@ -8,6 +8,10 @@ MainWindow::MainWindow(QWidget *parent)
     initUI();
     setCentralWidget(m_mainWidiget);
 }
-void MainWindow::initUI() { setWindowTitle(tr("加密软件")); }
+void MainWindow::initUI()
+{
+    setWindowTitle(tr("加密软件"));
+    resize(950, 600);
+}
 
 MainWindow::~MainWindow() {}
