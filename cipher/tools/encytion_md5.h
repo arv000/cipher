@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "abstract_encytion.h"
+
 class EncytionMD5 : public AbstractEncytion {
     Q_OBJECT
    public:

@@ -47,5 +47,6 @@ void EncrytionDataView::slotClickDoWork()
 
 void EncrytionDataView::slotEncrytionFinish(QString out)
 {
+    TxtEditMiWen_->setText(out);
     qInfo() << "out:" << out;
 }

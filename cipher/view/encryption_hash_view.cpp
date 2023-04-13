@@ -42,6 +42,8 @@ void EncryptionHashView::initUI()
     LayoutBtn_->addWidget(RBtnMD5_);
     LayoutBtn_->addWidget(RBtnSha256_);
     LayoutBtn_->addWidget(RBtnSM3_);
+    RBtnMD5_->setEnabled(true);
+    RBtnMD5_->setChecked(true);
     LayoutBtn_->addStretch();
     LayoutMain_->addLayout(LayoutBtn_);
 

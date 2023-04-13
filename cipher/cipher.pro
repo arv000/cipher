@@ -24,6 +24,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++11
 
+INCLUDEPATH += $$PWD/3rdparty/openssl/include/
+
 SOURCES += \
         main.cpp \
         view/mainwindow.cpp \
@@ -38,8 +40,9 @@ SOURCES += \
         tools/encytion_sha256.cpp \
         tools/encytion_sm3.cpp \
         view/encryption_hash_base_view.cpp \
-    tools/encytion_data_job.cpp \
-    tools/encytion_file_job.cpp
+        tools/encytion_data_job.cpp \
+        tools/encytion_file_job.cpp \
+    tools/tools.cpp
 
 HEADERS += \
         view/mainwindow.h \
@@ -54,13 +57,15 @@ HEADERS += \
         tools/encytion_sha256.h \
         tools/encytion_sm3.h \
         view/encryption_hash_base_view.h \
-    tools/encytion_data_job.h \
-    tools/encytion_file_job.h
+        tools/encytion_data_job.h \
+        tools/encytion_file_job.h \
+        tools/tools.h
 
-INCLUDEPATH += ./3rdparty/openssl/include/
 
-LIBS += -L./3rdparty/openssl/lib64/libcrypto.a
-LIBS += -L./3rdparty/openssl/lib64/libssl.a
+
+LIBS += $$PWD/3rdparty/openssl/lib64/libcrypto.a
+LIBS += $$PWD/3rdparty/openssl/lib64/libssl.a
+LIBS += -ldl
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
