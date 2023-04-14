@@ -1,6 +1,6 @@
 #include "encytion_file_job.h"
 #include "abstract_encytion.h"
-EncytionFileJob::EncytionFileJob(AbstractEncytion *encytion)
+EncytionFileJob::EncytionFileJob(AbstractHashEncytion *encytion)
     : encytion_(encytion)
 {
 }

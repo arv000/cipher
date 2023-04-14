@@ -2,7 +2,7 @@
 #define ENCRYTION_FILE_VIEW_H
 
 #include <QWidget>
-class AbstractEncytion;
+class AbstractHashEncytion;
 class QPushButton;
 class QFileDialog;
 class QLineEdit;
@@ -13,7 +13,7 @@ class EncytionFileJob;
 class EncrytionFileView : public QWidget {
     Q_OBJECT
    public:
-    explicit EncrytionFileView(AbstractEncytion *encytion);
+    explicit EncrytionFileView(AbstractHashEncytion *encytion);
     EncytionFileJob *encytionJob_;
 
    private:

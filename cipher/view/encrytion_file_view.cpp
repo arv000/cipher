@@ -1,6 +1,6 @@
 #include "encrytion_file_view.h"
-#include "tools/abstract_encytion.h"
-#include "tools/encytion_file_job.h"
+#include "tools/hash/abstract_encytion.h"
+#include "tools/hash/encytion_file_job.h"
 #include <QPushButton>
 #include <QFileDialog>
 #include <QLineEdit>
@@ -8,7 +8,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QDebug>
-EncrytionFileView::EncrytionFileView(AbstractEncytion *encytion)
+EncrytionFileView::EncrytionFileView(AbstractHashEncytion *encytion)
     : encytionJob_(new EncytionFileJob(encytion))
     , LayoutMain_(new QVBoxLayout())
     , LayoutFile_(new QHBoxLayout())
@@ -50,7 +50,7 @@ void EncrytionFileView::initConnect()
 void EncrytionFileView::slotSelectFilePath()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("文件选取"), "/",
-                                                    tr("文本文件(*txt)"));
+                                                    tr("文本文件(*.*)"));
     LineEditFilePath_->setText(fileName);
 }
 

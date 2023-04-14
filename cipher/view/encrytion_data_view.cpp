@@ -2,11 +2,11 @@
 #include <QTextEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include "tools/abstract_encytion.h"
-#include "tools/encytion_md5.h"
-#include "tools/encytion_data_job.h"
+#include "tools/hash/abstract_encytion.h"
+#include "tools/hash/encytion_md5.h"
+#include "tools/hash/encytion_data_job.h"
 #include <QDebug>
-EncrytionDataView::EncrytionDataView(AbstractEncytion *encytion)
+EncrytionDataView::EncrytionDataView(AbstractHashEncytion *encytion)
     : encytionJob_(new EncytionDataJob(encytion))
     , TxtEditMingWen_(new QTextEdit)
     , TxtEditMiWen_(new QTextEdit)

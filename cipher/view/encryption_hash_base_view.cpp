@@ -4,10 +4,10 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QStackedWidget>
-#include "tools/abstract_encytion.h"
+#include "tools/hash/abstract_encytion.h"
 #include "encrytion_data_view.h"
 #include "encrytion_file_view.h"
-EncryptionHashBaseView::EncryptionHashBaseView(AbstractEncytion *encytion)
+EncryptionHashBaseView::EncryptionHashBaseView(AbstractHashEncytion *encytion)
     : DataBtn_(new QPushButton("数据加密"))
     , FileBtn_(new QPushButton("文件加密"))
     , LayoutBtn_(new QHBoxLayout)

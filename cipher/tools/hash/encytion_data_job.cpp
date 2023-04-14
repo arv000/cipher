@@ -1,7 +1,7 @@
 #include "encytion_data_job.h"
 #include "abstract_encytion.h"
 #include <QDebug>
-EncytionDataJob::EncytionDataJob(AbstractEncytion *encytion)
+EncytionDataJob::EncytionDataJob(AbstractHashEncytion *encytion)
     : encytion_(encytion)
 {
 }

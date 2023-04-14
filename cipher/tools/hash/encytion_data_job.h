@@ -3,12 +3,12 @@
 
 #include <QObject>
 #include <QThread>
-class AbstractEncytion;
+class AbstractHashEncytion;
 class EncytionDataJob : public QThread {
     Q_OBJECT
    public:
-    explicit EncytionDataJob(AbstractEncytion *encytion);
-    AbstractEncytion *encytion_;
+    explicit EncytionDataJob(AbstractHashEncytion *encytion);
+    AbstractHashEncytion *encytion_;
     void setData(QString data);
     QString data_;
    signals:

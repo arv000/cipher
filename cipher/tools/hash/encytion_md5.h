@@ -1,21 +1,22 @@
-#ifndef ENCYTION_SHA256_H
-#define ENCYTION_SHA256_H
+#ifndef ENCYTION_MD5_H
+#define ENCYTION_MD5_H
 
 #include <QObject>
 #include "abstract_encytion.h"
-class EncytionSha256 : public AbstractEncytion {
+
+class EncytionMD5 : public AbstractHashEncytion {
     Q_OBJECT
    public:
-    explicit EncytionSha256(QObject *parent = nullptr);
+    explicit EncytionMD5(QObject *parent = nullptr);
 
    signals:
 
    public slots:
 
-    // AbstractEncytion interface
+    // AbstractHashEncytion interface
    public:
     QString EncytonData(QString string) override;
     QString EncytonFile(QString inFilePath) override;
 };
 
-#endif  // ENCYTION_SHA256_H
+#endif  // ENCYTION_MD5_H

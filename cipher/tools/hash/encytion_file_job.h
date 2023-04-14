@@ -3,12 +3,12 @@
 
 #include <QObject>
 #include <QThread>
-class AbstractEncytion;
+class AbstractHashEncytion;
 class EncytionFileJob : public QThread {
     Q_OBJECT
    public:
-    explicit EncytionFileJob(AbstractEncytion *encytion);
-    AbstractEncytion *encytion_;
+    explicit EncytionFileJob(AbstractHashEncytion *encytion);
+    AbstractHashEncytion *encytion_;
     QString strInFilePath_;
     QString strOutFilePath_;
     void setData(QString strInFilePath);

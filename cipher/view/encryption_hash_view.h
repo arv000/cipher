@@ -8,7 +8,7 @@ class QVBoxLayout;
 class QHBoxLayout;
 class QRadioButton;
 class QButtonGroup;
-class AbstractEncytion;
+class AbstractHashEncytion;
 class EncrytionDataView;
 class EncrytionFileView;
 class QStackedWidget;
@@ -33,7 +33,6 @@ class EncryptionHashView : public QWidget {
     QRadioButton *RBtnMD5_;
     QRadioButton *RBtnSha256_;
     QRadioButton *RBtnSM3_;
-    AbstractEncytion *MD5_;
     QStackedWidget *stack_;
     EncytionMD5 *funMd5_;
     EncytionSha256 *funSha256_;

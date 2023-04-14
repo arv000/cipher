@@ -7,13 +7,13 @@ class EncrytionFileView;
 class QPushButton;
 class QHBoxLayout;
 class QVBoxLayout;
-class AbstractEncytion;
+class AbstractHashEncytion;
 class QStackedWidget;
 class EncytionDataJob;
 class EncryptionHashBaseView : public QWidget {
     Q_OBJECT
    public:
-    explicit EncryptionHashBaseView(AbstractEncytion *encytion);
+    explicit EncryptionHashBaseView(AbstractHashEncytion *encytion);
 
    private:
     void init();

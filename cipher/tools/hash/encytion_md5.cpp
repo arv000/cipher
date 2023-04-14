@@ -5,7 +5,7 @@
 #include <openssl/dh.h>
 #include <openssl/evp.h>
 #include <openssl/md5.h>
-#include "tools.h"
+#include "../tools.h"
 EncytionMD5::EncytionMD5(QObject *) {}
 
 QString EncytionMD5::EncytonData(QString string)

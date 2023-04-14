@@ -3,10 +3,10 @@
 
 #include <QObject>
 #include <QString>
-class AbstractEncytion : public QObject {
+class AbstractHashEncytion : public QObject {
     Q_OBJECT
    public:
-    explicit AbstractEncytion(QObject *parent = nullptr);
+    explicit AbstractHashEncytion(QObject *parent = nullptr);
     virtual QString EncytonData(QString string) = 0;
     virtual QString EncytonFile(QString inFilePath) = 0;
 };

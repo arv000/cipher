@@ -7,10 +7,10 @@
 #include <QStackedWidget>
 #include "encryption_hash_base_view.h"
 
-#include "tools/abstract_encytion.h"
-#include "tools/encytion_md5.h"
-#include "tools/encytion_sha256.h"
-#include "tools/encytion_sm3.h"
+#include "tools/hash/abstract_encytion.h"
+#include "tools/hash/encytion_md5.h"
+#include "tools/hash/encytion_sha256.h"
+#include "tools/hash/encytion_sm3.h"
 
 EncryptionHashView::EncryptionHashView(QWidget* parent)
     : QWidget(parent)

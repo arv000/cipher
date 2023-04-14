@@ -2,7 +2,7 @@
 #define ENCRYTION_DATA_VIEW_H
 
 #include <QWidget>
-class AbstractEncytion;
+class AbstractHashEncytion;
 class QTextEdit;
 class QPushButton;
 class QVBoxLayout;
@@ -10,7 +10,7 @@ class EncytionDataJob;
 class EncrytionDataView : public QWidget {
     Q_OBJECT
    public:
-    explicit EncrytionDataView(AbstractEncytion *encytion);
+    explicit EncrytionDataView(AbstractHashEncytion *encytion);
 
     EncytionDataJob *encytionJob_;
 
