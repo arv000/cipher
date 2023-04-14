@@ -30,40 +30,48 @@ SOURCES += \
         main.cpp \
         view/mainwindow.cpp \
         view/main_widget.cpp \
-        view/encryption_hash_view.cpp \
-        view/encryption_asymmetric_view.cpp \
-        view/encryption_symmetric_view.cpp \
-        view/encrytion_data_view.cpp \
-        view/encrytion_file_view.cpp \
+        view/hash/encryption_hash_view.cpp \
+        view/asymmetric/encryption_asymmetric_view.cpp \
+        view/symmetric/encryption_symmetric_view.cpp \
+        view/hash/encrytion_data_view.cpp \
+        view/hash/encrytion_file_view.cpp \
         tools/hash/abstract_encytion.cpp \
         tools/hash/encytion_md5.cpp \
         tools/hash/encytion_sha256.cpp \
         tools/hash/encytion_sm3.cpp \
-        view/encryption_hash_base_view.cpp \
+        view/hash/encryption_hash_base_view.cpp \
         tools/hash/encytion_data_job.cpp \
         tools/hash/encytion_file_job.cpp \
     tools/tools.cpp \
-    tools/asymmetry/abstract_symmetry_encytion.cpp \
-    tools/asymmetry/encytion_aes.cpp
+    tools/symmetry/abstract_symmetry_encytion.cpp \
+    tools/symmetry/encytion_aes.cpp \
+    view/symmetric/encryption_aes_view.cpp \
+    view/symmetric/encryption_aes_data_view.cpp \
+    view/symmetric/encryption_aes_file_view.cpp \
+    view/symmetric/encryption_des_view.cpp
 
 HEADERS += \
         view/mainwindow.h \
         view/main_widget.h \
-        view/encryption_hash_view.h \
-        view/encryption_asymmetric_view.h \
-        view/encryption_symmetric_view.h \
-        view/encrytion_data_view.h \
-        view/encrytion_file_view.h \
+        view/hash/encryption_hash_view.h \
+        view/asymmetric/encryption_asymmetric_view.h \
+        view/symmetric/encryption_symmetric_view.h \
+        view/hash/encrytion_data_view.h \
+        view/hash/encrytion_file_view.h \
         tools/hash/abstract_encytion.h \
         tools/hash/encytion_md5.h \
         tools/hash/encytion_sha256.h \
         tools/hash/encytion_sm3.h \
         tools/hash/encytion_data_job.h \
         tools/hash/encytion_file_job.h \
-        view/encryption_hash_base_view.h \
+        view/hash/encryption_hash_base_view.h \
         tools/tools.h \
-    tools/asymmetry/abstract_symmetry_encytion.h \
-    tools/asymmetry/encytion_aes.h
+    tools/symmetry/abstract_symmetry_encytion.h \
+    tools/symmetry/encytion_aes.h \
+    view/symmetric/encryption_aes_view.h \
+    view/symmetric/encryption_aes_data_view.h \
+    view/symmetric/encryption_aes_file_view.h \
+    view/symmetric/encryption_des_view.h
 
 
 

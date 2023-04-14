@@ -3,11 +3,12 @@
 
 #include <QObject>
 #include "abstract_symmetry_encytion.h"
+#include <openssl/evp.h>
 class EncytionAES : public AbstractSymmetryEncytion {
     Q_OBJECT
    public:
     explicit EncytionAES(QObject *parent = nullptr);
-
+    ~EncytionAES();
    signals:
 
    public slots:
@@ -34,6 +35,8 @@ class EncytionAES : public AbstractSymmetryEncytion {
                               const QByteArray &ivec);
     QByteArray EncytonDataXTS(const QByteArray &in, const QByteArray &key,
                               const QByteArray &ivec);
+    QByteArray Encyton(const QByteArray &in, const QByteArray &key,
+                       const QByteArray &ivec, const EVP_CIPHER *ciper);
 };
 
 #endif  // ENCYTION_AES_H

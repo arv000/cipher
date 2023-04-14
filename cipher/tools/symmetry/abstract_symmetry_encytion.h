@@ -15,6 +15,7 @@ class AbstractSymmetryEncytion : public QObject {
     Q_OBJECT
    public:
     explicit AbstractSymmetryEncytion(QObject *parent = nullptr);
+    ~AbstractSymmetryEncytion() {}
     /**
      * @brief EncytonData
      * @param in

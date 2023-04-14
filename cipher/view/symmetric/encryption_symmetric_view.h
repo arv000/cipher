@@ -3,9 +3,15 @@
 
 #include <QWidget>
 class QLabel;
+class QTabWidget;
+class EncryptionAESView;
+class EncryptionDESView;
 class EncryptionSymmetricView : public QWidget {
    public:
     EncryptionSymmetricView(QWidget *parent = nullptr);
+    QTabWidget *TabView_;
+    EncryptionAESView *AESView_;
+    EncryptionDESView *DESView_;
     QLabel *lab_;
 };
 

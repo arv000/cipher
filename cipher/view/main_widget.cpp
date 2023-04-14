@@ -4,9 +4,9 @@
 #include <QHBoxLayout>
 #include <QStackedWidget>
 #include <QDebug>
-#include "encryption_asymmetric_view.h"
-#include "encryption_hash_view.h"
-#include "encryption_symmetric_view.h"
+#include "asymmetric/encryption_asymmetric_view.h"
+#include "hash/encryption_hash_view.h"
+#include "symmetric/encryption_symmetric_view.h"
 
 MainWidget::MainWidget(QWidget *parent)
     : QWidget(parent)
@@ -44,8 +44,8 @@ void MainWidget::initUI()
 
     LayoutMain_->addLayout(LayoutBts_);
 
-    StackedWidget_->addWidget(encryptionAsymmetricView_);
     StackedWidget_->addWidget(encryptionSymmetricView_);
+    StackedWidget_->addWidget(encryptionAsymmetricView_);
     StackedWidget_->addWidget(encryptionHashView_);
     LayoutMain_->addWidget(StackedWidget_);
 
