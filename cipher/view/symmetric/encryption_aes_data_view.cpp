@@ -1,5 +1,6 @@
 #include "encryption_aes_data_view.h"
 #include "tools/symmetry/abstract_symmetry_encytion.h"
+#include <QDebug>
 EncryptionAESDataView::EncryptionAESDataView(QWidget *parent)
     : QWidget(parent)
     , labPassWord_(new QLabel("密码", this))
@@ -17,6 +18,17 @@ EncryptionAESDataView::EncryptionAESDataView(QWidget *parent)
     , LEdtMingwen_(new QLineEdit)
     , LayoutMingwen_(new QHBoxLayout)
     , TEdtMiwen_(new QTextEdit)
+{
+    init();
+}
+
+void EncryptionAESDataView::init()
+{
+    initUI();
+    initConnect();
+}
+
+void EncryptionAESDataView::initUI()
 {
     LayoutPassWord_->addWidget(labPassWord_, 0, 0);
     LayoutPassWord_->addWidget(labConfirmPassWord_, 1, 0);
@@ -57,3 +69,19 @@ EncryptionAESDataView::EncryptionAESDataView(QWidget *parent)
     LayoutMain_->addStretch();
     setLayout(LayoutMain_);
 }
+void EncryptionAESDataView::initConnect()
+{
+    connect(BtnEncytion_, &QPushButton::clicked, this,
+            &EncryptionAESDataView::slotDoEncytion);
+    connect(BtnDecrypt_, &QPushButton::clicked, this,
+            &EncryptionAESDataView::slotDoDecrypt);
+}
+
+void EncryptionAESDataView::slotDoEncytion()
+{
+    ;
+    qInfo() << "slotDoEncytion"
+            << CBBAlgorithm_->itemData(CBBAlgorithm_->currentIndex()).toInt();
+}
+
+void EncryptionAESDataView::slotDoDecrypt() { qInfo() << "slotDoDecrypt"; }

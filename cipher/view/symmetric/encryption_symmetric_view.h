@@ -2,16 +2,19 @@
 #define SYMMETRIC_ENCRYPTION_VIEW_H
 
 #include <QWidget>
+#include <QPointer>
 class QLabel;
 class QTabWidget;
 class EncryptionAESView;
 class EncryptionDESView;
+class EncryptionSM4View;
 class EncryptionSymmetricView : public QWidget {
    public:
     EncryptionSymmetricView(QWidget *parent = nullptr);
     QTabWidget *TabView_;
-    EncryptionAESView *AESView_;
-    EncryptionDESView *DESView_;
+    QPointer<EncryptionAESView> AESView_;
+    QPointer<EncryptionDESView> DESView_;
+    QPointer<EncryptionSM4View> SM4View_;
     QLabel *lab_;
 };
 

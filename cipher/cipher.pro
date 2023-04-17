@@ -48,7 +48,9 @@ SOURCES += \
     view/symmetric/encryption_aes_view.cpp \
     view/symmetric/encryption_aes_data_view.cpp \
     view/symmetric/encryption_aes_file_view.cpp \
-    view/symmetric/encryption_des_view.cpp
+    view/symmetric/encryption_des_view.cpp \
+    tools/symmetry/symmetry_encytion_job.cpp \
+    view/symmetric/encryption_sm4_view.cpp
 
 HEADERS += \
         view/mainwindow.h \
@@ -66,12 +68,14 @@ HEADERS += \
         tools/hash/encytion_file_job.h \
         view/hash/encryption_hash_base_view.h \
         tools/tools.h \
-    tools/symmetry/abstract_symmetry_encytion.h \
-    tools/symmetry/encytion_aes.h \
-    view/symmetric/encryption_aes_view.h \
-    view/symmetric/encryption_aes_data_view.h \
-    view/symmetric/encryption_aes_file_view.h \
-    view/symmetric/encryption_des_view.h
+        tools/symmetry/abstract_symmetry_encytion.h \
+        tools/symmetry/encytion_aes.h \
+        view/symmetric/encryption_aes_view.h \
+        view/symmetric/encryption_aes_data_view.h \
+        view/symmetric/encryption_aes_file_view.h \
+        view/symmetric/encryption_des_view.h \
+        tools/symmetry/symmetry_encytion_job.h \
+    view/symmetric/encryption_sm4_view.h
 
 
 

@@ -2,6 +2,7 @@
 #define ENCRYTION_DATA_VIEW_H
 
 #include <QWidget>
+#include <QPointer>
 class AbstractHashEncytion;
 class QTextEdit;
 class QPushButton;
@@ -18,7 +19,7 @@ class EncrytionDataView : public QWidget {
     void init();
     void initUI();
     void initConnect();
-    QTextEdit *TxtEditMingWen_;
+    QPointer<QTextEdit> TxtEditMingWen_;
     QTextEdit *TxtEditMiWen_;
     QPushButton *BtnDoWork_;
     QVBoxLayout *LayoutMain_;

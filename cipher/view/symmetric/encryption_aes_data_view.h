@@ -14,6 +14,11 @@ class EncryptionAESDataView : public QWidget {
     Q_OBJECT
    public:
     explicit EncryptionAESDataView(QWidget *parent = nullptr);
+
+   private:
+    void init();
+    void initUI();
+    void initConnect();
     QLabel *labPassWord_;
     QLabel *labConfirmPassWord_;
     QLineEdit *LEdtPassWord_;
@@ -32,6 +37,8 @@ class EncryptionAESDataView : public QWidget {
    signals:
 
    public slots:
+    void slotDoEncytion();
+    void slotDoDecrypt();
 };
 
 #endif  // ENCRYPTION_AES_DATA_VIEW_H

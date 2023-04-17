@@ -2,7 +2,7 @@
 #include <openssl/aes.h>
 #include <openssl/evp.h>
 EncytionAES::EncytionAES(QObject *parent)
-    : AbstractSymmetryEncytion(parent)
+    : AbstractSymmetryEncytion()
 {
 }
 

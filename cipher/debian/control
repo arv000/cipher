@@ -1,0 +1,15 @@
+Source: cipher
+Section: utils
+Priority: optional
+Maintainer: arv000 <arv003@163.com>
+Build-Depends:
+ debhelper (>= 11),
+ cmake,
+
+
+Standards-Version: 1.0.0
+Package: cipher
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+Description: 加密工具.
+    加密工具.
