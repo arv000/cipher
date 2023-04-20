@@ -31,7 +31,7 @@ class EncrytionFileView : public QWidget {
    public slots:
     void slotSelectFilePath();
     void slotDoWork();
-    void slotEncrytionFinish(QString out);
+    void slotEncrytionFinish(QByteArray out);
 };
 
 #endif  // ENCRYTION_FILE_VIEW_H

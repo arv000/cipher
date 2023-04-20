@@ -14,8 +14,8 @@ class EncytionSha256 : public AbstractHashEncytion {
 
     // AbstractEncytion interface
    public:
-    QString EncytonData(QString string) override;
-    QString EncytonFile(QString inFilePath) override;
+    QByteArray EncytonData(QString string) override;
+    QByteArray EncytonFile(QString inFilePath) override;
 };
 
 #endif  // ENCYTION_SHA256_H

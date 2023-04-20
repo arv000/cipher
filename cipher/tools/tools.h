@@ -8,6 +8,7 @@ class Tools : public QObject {
    public:
     explicit Tools(QObject *parent = nullptr);
     static QString CharToHex(unsigned char *str, unsigned int strLen);
+    static QString QBarrayToHex(QByteArray str, unsigned int strLen);
    signals:
 
    public slots:

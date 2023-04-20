@@ -15,6 +15,6 @@ void EncytionFileJob::run()
     if (strInFilePath_.isEmpty()) {
         return;
     }
-    QString out = encytion_->EncytonFile(strInFilePath_);
+    QByteArray out = encytion_->EncytonFile(strInFilePath_);
     emit sigFinish(out);
 }

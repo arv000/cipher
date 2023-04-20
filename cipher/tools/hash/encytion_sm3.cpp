@@ -6,7 +6,7 @@
 #include "../tools.h"
 EncytionSM3::EncytionSM3(QObject *) {}
 
-QString EncytionSM3::EncytonData(QString string)
+QByteArray EncytionSM3::EncytonData(QString string)
 {
     qInfo() << "EncytionSM3 " << string;
 
@@ -19,12 +19,12 @@ QString EncytionSM3::EncytonData(QString string)
     unsigned char result[SM3_DIGEST_LENGTH] = {};
     EVP_DigestFinal_ex(ctx, result, &len);
     //    EVP_MD_CTX_init(&ctx);
-    QString res = Tools::CharToHex(result, len);
+    //   QString res = Tools::CharToHex(result, len);
     EVP_MD_CTX_free(ctx);
-    return res;
+    return QByteArray(reinterpret_cast<char *>(result), static_cast<int>(len));
 }
 
-QString EncytionSM3::EncytonFile(QString inFilePath)
+QByteArray EncytionSM3::EncytonFile(QString inFilePath)
 {
     qInfo() << "EncytionSha256 EncytonFile" << inFilePath;
     unsigned int len = 0;
@@ -51,6 +51,6 @@ QString EncytionSM3::EncytonFile(QString inFilePath)
     unsigned char result[SM3_DIGEST_LENGTH] = {};
     EVP_DigestFinal_ex(ctx, result, &len);
     EVP_MD_CTX_free(ctx);
-    QString res = Tools::CharToHex(result, len);
-    return res;
+//    QString res = Tools::CharToHex(result, len);
+    return QByteArray(reinterpret_cast<char *>(result), static_cast<int>(len));
 }

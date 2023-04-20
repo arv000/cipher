@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QDebug>
+#include <tools/tools.h>
 EncrytionFileView::EncrytionFileView(AbstractHashEncytion *encytion)
     : encytionJob_(new EncytionFileJob(encytion))
     , LayoutMain_(new QVBoxLayout())
@@ -60,8 +61,7 @@ void EncrytionFileView::slotDoWork()
     encytionJob_->start();
 }
 
-void EncrytionFileView::slotEncrytionFinish(QString out)
+void EncrytionFileView::slotEncrytionFinish(QByteArray out)
 {
-    qInfo() << out;
-    TextEditResoult_->setText(out);
+    TextEditResoult_->setText(Tools::QBarrayToHex(out,out.length()));
 }

@@ -5,10 +5,11 @@
 class QTabWidget;
 class EncryptionAESDataView;
 class EncryptionAESFileView;
-class EncryptionAESView : public QWidget {
+class AbstractSymmetryEncytion;
+class EncryptionSymmetricBaseView : public QWidget {
     Q_OBJECT
    public:
-    explicit EncryptionAESView(QWidget *parent = nullptr);
+    explicit EncryptionSymmetricBaseView(AbstractSymmetryEncytion *encytion);
     QTabWidget *TabView_;
     EncryptionAESDataView *AESDataView_;
     EncryptionAESFileView *AESFileView_;

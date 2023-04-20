@@ -12,7 +12,7 @@ class EncytionDataJob : public QThread {
     void setData(QString data);
     QString data_;
    signals:
-    void sigFinish(QString strOut);
+    void sigFinish(QByteArray strOut);
    public slots:
 
     // QThread interface

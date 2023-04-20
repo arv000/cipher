@@ -28,7 +28,7 @@ class EncrytionDataView : public QWidget {
    public slots:
 
     void slotClickDoWork();
-    void slotEncrytionFinish(QString out);
+    void slotEncrytionFinish(QByteArray out);
 };
 
 #endif  // ENCRYTION_DATA_VIEW_H

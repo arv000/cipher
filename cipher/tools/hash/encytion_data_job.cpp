@@ -14,6 +14,6 @@ void EncytionDataJob::run()
     if (data_.isEmpty()) {
         return;
     }
-    QString res = encytion_->EncytonData(data_);
+    QByteArray res = encytion_->EncytonData(data_);
     emit sigFinish(res);
 }

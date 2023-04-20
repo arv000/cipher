@@ -10,15 +10,21 @@
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QComboBox>
+#include <QPointer>
+#include "tools/symmetry/abstract_symmetry_encytion.h"
+#include "tools/symmetry/symmetry_encytion_job.h"
 class EncryptionAESDataView : public QWidget {
     Q_OBJECT
    public:
-    explicit EncryptionAESDataView(QWidget *parent = nullptr);
+    explicit EncryptionAESDataView(AbstractSymmetryEncytion *parent);
 
    private:
     void init();
     void initUI();
     void initConnect();
+
+    QPointer<SymmetryEncytionJob> EncytionJob_;
+
     QLabel *labPassWord_;
     QLabel *labConfirmPassWord_;
     QLineEdit *LEdtPassWord_;
@@ -34,10 +40,16 @@ class EncryptionAESDataView : public QWidget {
     QLineEdit *LEdtMingwen_;
     QHBoxLayout *LayoutMingwen_;
     QTextEdit *TEdtMiwen_;
+
+    QByteArray getKey(QByteArray key);
+    QByteArray getKey128(QByteArray key);
+    QByteArray getKey192(QByteArray key);
+    QByteArray getKey256(QByteArray key);
    signals:
 
    public slots:
     void slotDoEncytion();
+    void slotDoEncytionFinish();
     void slotDoDecrypt();
 };
 

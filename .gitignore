@@ -1,2 +1,5 @@
 *-Debug
 *.pro.user
+*.deb
+*.changes
+*.buildinfo

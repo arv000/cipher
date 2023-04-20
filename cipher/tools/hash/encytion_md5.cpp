@@ -8,7 +8,7 @@
 #include "../tools.h"
 EncytionMD5::EncytionMD5(QObject *) {}
 
-QString EncytionMD5::EncytonData(QString string)
+QByteArray EncytionMD5::EncytonData(QString string)
 {
     qInfo() << "EncytionMD5 " << string;
 
@@ -20,12 +20,12 @@ QString EncytionMD5::EncytonData(QString string)
                      string.toStdString().length());
     unsigned char result[MD5_DIGEST_LENGTH] = {};
     EVP_DigestFinal_ex(ctx, result, &len);
-    QString res = Tools::CharToHex(result, len);
+
     EVP_MD_CTX_free(ctx);
-    return res;
+     return QByteArray(reinterpret_cast<char *>(result), static_cast<int>(len));
 }
 
-QString EncytionMD5::EncytonFile(QString inFilePath)
+QByteArray EncytionMD5::EncytonFile(QString inFilePath)
 {
     qInfo() << "EncytionMD5 EncytonFile" << inFilePath;
     unsigned int len = 0;
@@ -45,13 +45,12 @@ QString EncytionMD5::EncytonFile(QString inFilePath)
         nLineLen = fread(szDataBuff, a,
                          static_cast<unsigned long>(MD5_DIGEST_LENGTH), fp);
         if (nLineLen) {
-            EVP_DigestUpdate(ctx, szDataBuff, static_cast<int>(nLineLen));
+            EVP_DigestUpdate(ctx, szDataBuff, nLineLen);
         }
     }
     fclose(fp);
     unsigned char result[MD5_DIGEST_LENGTH] = {};
     EVP_DigestFinal_ex(ctx, result, &len);
     EVP_MD_CTX_free(ctx);
-    QString res = Tools::CharToHex(result, len);
-    return res;
+    return QByteArray(reinterpret_cast<char *>(result), static_cast<int>(len));
 }

@@ -1,8 +1,8 @@
 #include "encryption_aes_data_view.h"
-#include "tools/symmetry/abstract_symmetry_encytion.h"
+#include "tools/hash/encytion_sha256.h"
 #include <QDebug>
-EncryptionAESDataView::EncryptionAESDataView(QWidget *parent)
-    : QWidget(parent)
+EncryptionAESDataView::EncryptionAESDataView(AbstractSymmetryEncytion *encytion)
+    : EncytionJob_(new SymmetryEncytionJob(encytion))
     , labPassWord_(new QLabel("密码", this))
     , labConfirmPassWord_(new QLabel("确认密码", this))
     , LEdtPassWord_(new QLineEdit())
@@ -37,21 +37,33 @@ void EncryptionAESDataView::initUI()
 
     LayoutPassWord_->addWidget(labAlgorithm_, 2, 0);
     LayoutPassWord_->addWidget(CBBAlgorithm_, 2, 1);
-
-    CBBAlgorithm_->addItem(
-        "AES_ECB", QVariant::fromValue(static_cast<int>(CIPH_MODE_ECB)));
-    CBBAlgorithm_->addItem(
-        "AES_CBC", QVariant::fromValue(static_cast<int>(CIPH_MODE_CBC)));
-    CBBAlgorithm_->addItem(
-        "AES_CFB", QVariant::fromValue(static_cast<int>(CIPH_MODE_CFB)));
-    CBBAlgorithm_->addItem(
-        "AES_OFB", QVariant::fromValue(static_cast<int>(CIPH_MODE_OFB)));
-    CBBAlgorithm_->addItem(
-        "AES_CTR", QVariant::fromValue(static_cast<int>(CIPH_MODE_CTR)));
-    CBBAlgorithm_->addItem(
-        "AES_GCM", QVariant::fromValue(static_cast<int>(CIPH_MODE_GCM)));
-    CBBAlgorithm_->addItem(
-        "AES_CCM", QVariant::fromValue(static_cast<int>(CIPH_MODE_CCM)));
+    ADD_ITEM(CIPH_MODE_CBC_128);
+    ADD_ITEM(CIPH_MODE_ECB_128);
+    ADD_ITEM(CIPH_MODE_ECB_192);
+    ADD_ITEM(CIPH_MODE_ECB_256);
+    ADD_ITEM(CIPH_MODE_CBC_128);
+    ADD_ITEM(CIPH_MODE_CBC_192);
+    ADD_ITEM(CIPH_MODE_CBC_256);
+    ADD_ITEM(CIPH_MODE_CFB_128);
+    ADD_ITEM(CIPH_MODE_CFB_192);
+    ADD_ITEM(CIPH_MODE_CFB_256);
+    ADD_ITEM(CIPH_MODE_OFB_128);
+    ADD_ITEM(CIPH_MODE_OFB_192);
+    ADD_ITEM(CIPH_MODE_OFB_256);
+    ADD_ITEM(CIPH_MODE_CTR_128);
+    ADD_ITEM(CIPH_MODE_CTR_192);
+    ADD_ITEM(CIPH_MODE_CTR_256);
+    ADD_ITEM(CIPH_MODE_GCM_128);
+    ADD_ITEM(CIPH_MODE_GCM_192);
+    ADD_ITEM(CIPH_MODE_GCM_256);
+    ADD_ITEM(CIPH_MODE_CCM_128);
+    ADD_ITEM(CIPH_MODE_CCM_192);
+    ADD_ITEM(CIPH_MODE_CCM_256);
+    ADD_ITEM(CIPH_MODE_XTS_128);
+    ADD_ITEM(CIPH_MODE_XTS_256);
+    ADD_ITEM(CIPH_MODE_OCB_128);
+    ADD_ITEM(CIPH_MODE_OCB_192);
+    ADD_ITEM(CIPH_MODE_OCB_256);
 
     LEdtPassWord_->setEchoMode(QLineEdit::EchoMode::Password);
     LEdtConfirmPassWord_->setEchoMode(QLineEdit::EchoMode::Password);
@@ -77,11 +89,67 @@ void EncryptionAESDataView::initConnect()
             &EncryptionAESDataView::slotDoDecrypt);
 }
 
+QByteArray EncryptionAESDataView::getKey(QByteArray key)
+{
+    CIPH_MODE sel = static_cast<CIPH_MODE>(
+        CBBAlgorithm_->itemData(CBBAlgorithm_->currentIndex()).toInt());
+    switch (sel) {
+        case CIPH_MODE_ECB_128:
+        case CIPH_MODE_CBC_128:
+        case CIPH_MODE_CFB_128:
+        case CIPH_MODE_OFB_128:
+        case CIPH_MODE_CTR_128:
+        case CIPH_MODE_GCM_128:
+        case CIPH_MODE_CCM_128:
+        case CIPH_MODE_XTS_128:
+        case CIPH_MODE_OCB_128:
+            return getKey128(key);
+        case CIPH_MODE_ECB_192:
+        case CIPH_MODE_CBC_192:
+        case CIPH_MODE_CFB_192:
+        case CIPH_MODE_OFB_192:
+        case CIPH_MODE_CTR_192:
+        case CIPH_MODE_GCM_192:
+        case CIPH_MODE_CCM_192:
+        case CIPH_MODE_OCB_192:
+            return getKey192(key);
+        case CIPH_MODE_ECB_256:
+        case CIPH_MODE_CBC_256:
+        case CIPH_MODE_CFB_256:
+        case CIPH_MODE_OFB_256:
+        case CIPH_MODE_CTR_256:
+        case CIPH_MODE_GCM_256:
+        case CIPH_MODE_CCM_256:
+        case CIPH_MODE_XTS_256:
+        case CIPH_MODE_OCB_256:
+            return getKey256(key);
+    }
+    return "";
+}
+
+QByteArray EncryptionAESDataView::getKey128(QByteArray key) { return key; }
+
+QByteArray EncryptionAESDataView::getKey192(QByteArray key) { return key; }
+
+QByteArray EncryptionAESDataView::getKey256(QByteArray key)
+{
+    EncytionSha256 sha;
+    QByteArray key_res = sha.EncytonData(QString(key));
+    return key_res;
+}
+
 void EncryptionAESDataView::slotDoEncytion()
 {
-    ;
     qInfo() << "slotDoEncytion"
             << CBBAlgorithm_->itemData(CBBAlgorithm_->currentIndex()).toInt();
+    QByteArray key = getKey(LEdtPassWord_->text().toLocal8Bit());
+    EncytionJob_->setData(
+        LEdtMingwen_->text().toLatin1(), key, "aafd",
+        static_cast<CIPH_MODE>(
+            CBBAlgorithm_->itemData(CBBAlgorithm_->currentIndex()).toInt()));
+    EncytionJob_->start();
 }
+
+void EncryptionAESDataView::slotDoEncytionFinish() {}
 
 void EncryptionAESDataView::slotDoDecrypt() { qInfo() << "slotDoDecrypt"; }

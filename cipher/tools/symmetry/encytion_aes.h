@@ -4,6 +4,9 @@
 #include <QObject>
 #include "abstract_symmetry_encytion.h"
 #include <openssl/evp.h>
+#define KEY_SIZE_16B 16
+#define KEY_SIZE_24B 24
+#define KEY_SIZE_32B 32
 class EncytionAES : public AbstractSymmetryEncytion {
     Q_OBJECT
    public:
@@ -34,6 +37,8 @@ class EncytionAES : public AbstractSymmetryEncytion {
     QByteArray EncytonDataCCM(const QByteArray &in, const QByteArray &key,
                               const QByteArray &ivec);
     QByteArray EncytonDataXTS(const QByteArray &in, const QByteArray &key,
+                              const QByteArray &ivec);
+    QByteArray EncytonDataOCB(const QByteArray &in, const QByteArray &key,
                               const QByteArray &ivec);
     QByteArray Encyton(const QByteArray &in, const QByteArray &key,
                        const QByteArray &ivec, const EVP_CIPHER *ciper);

@@ -7,7 +7,7 @@
 #include "../tools.h"
 EncytionSha256::EncytionSha256(QObject *) {}
 
-QString EncytionSha256::EncytonData(QString string)
+QByteArray EncytionSha256::EncytonData(QString string)
 {
     qInfo() << "EncytionSha256 " << string;
 
@@ -19,12 +19,12 @@ QString EncytionSha256::EncytonData(QString string)
                      string.toStdString().length());
     unsigned char result[SHA256_DIGEST_LENGTH] = {};
     EVP_DigestFinal_ex(ctx, result, &len);
-    QString res = Tools::CharToHex(result, len);
+  //  QString res = Tools::CharToHex(result, len);
     EVP_MD_CTX_free(ctx);
-    return res;
+    return QByteArray(reinterpret_cast<char *>(result), static_cast<int>(len));
 }
 
-QString EncytionSha256::EncytonFile(QString inFilePath)
+QByteArray EncytionSha256::EncytonFile(QString inFilePath)
 {
     qInfo() << "EncytionSha256 EncytonFile" << inFilePath;
     unsigned int len = 0;
@@ -51,6 +51,6 @@ QString EncytionSha256::EncytonFile(QString inFilePath)
     unsigned char result[SHA256_DIGEST_LENGTH] = {};
     EVP_DigestFinal_ex(ctx, result, &len);
     EVP_MD_CTX_free(ctx);
-    QString res = Tools::CharToHex(result, len);
-    return res;
+   // QString res = Tools::CharToHex(result, len);
+    return QByteArray(reinterpret_cast<char *>(result), static_cast<int>(len));
 }

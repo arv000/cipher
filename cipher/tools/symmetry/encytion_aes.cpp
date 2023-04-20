@@ -1,6 +1,7 @@
 #include "encytion_aes.h"
 #include <openssl/aes.h>
 #include <openssl/evp.h>
+#include <QDebug>
 EncytionAES::EncytionAES(QObject *parent)
     : AbstractSymmetryEncytion()
 {
@@ -11,20 +12,42 @@ EncytionAES::~EncytionAES() {}
 QByteArray EncytionAES::EncytonData(const QByteArray &in, const QByteArray &key,
                                     const QByteArray &ivec, CIPH_MODE mode)
 {
+    qInfo() << "EncytionAES:EncytonData";
     switch (mode) {
-        case CIPH_MODE_ECB:
+        case CIPH_MODE_ECB_128:
+        case CIPH_MODE_ECB_192:
+        case CIPH_MODE_ECB_256:
             return EncytonDataECB(in, key, ivec);
-        case CIPH_MODE_CBC:
+        case CIPH_MODE_CBC_128:
+        case CIPH_MODE_CBC_192:
+        case CIPH_MODE_CBC_256:
             return EncytonDataCBC(in, key, ivec);
-        case CIPH_MODE_CFB:
+        case CIPH_MODE_CFB_128:
+        case CIPH_MODE_CFB_192:
+        case CIPH_MODE_CFB_256:
             return EncytonDataCFB(in, key, ivec);
-        case CIPH_MODE_OFB:
+        case CIPH_MODE_OFB_128:
+        case CIPH_MODE_OFB_192:
+        case CIPH_MODE_OFB_256:
             return EncytonDataOFB(in, key, ivec);
-        case CIPH_MODE_CTR:
+        case CIPH_MODE_CTR_128:
+        case CIPH_MODE_CTR_192:
+        case CIPH_MODE_CTR_256:
             return EncytonDataCTR(in, key, ivec);
-        case CIPH_MODE_GCM:
+        case CIPH_MODE_GCM_128:
+        case CIPH_MODE_GCM_192:
+        case CIPH_MODE_GCM_256:
             return EncytonDataGCM(in, key, ivec);
-        case CIPH_MODE_CCM:
+        case CIPH_MODE_CCM_128:
+        case CIPH_MODE_CCM_192:
+        case CIPH_MODE_CCM_256:
+            return EncytonDataCCM(in, key, ivec);
+        case CIPH_MODE_XTS_128:
+        case CIPH_MODE_XTS_256:
+            return EncytonDataXTS(in, key, ivec);
+        case CIPH_MODE_OCB_128:
+        case CIPH_MODE_OCB_192:
+        case CIPH_MODE_OCB_256:
             return EncytonDataCCM(in, key, ivec);
     }
     return "";
@@ -34,54 +57,132 @@ QByteArray EncytionAES::EncytonDataECB(const QByteArray &in,
                                        const QByteArray &key,
                                        const QByteArray &ivec)
 {
-    return "";
+    const EVP_CIPHER *cipher = nullptr;
+    if (key.size() == KEY_SIZE_16B) {
+        cipher = EVP_aes_128_ecb();
+    } else if (key.size() == KEY_SIZE_24B) {
+        cipher = EVP_aes_192_ecb();
+    } else {
+        cipher = EVP_aes_256_ecb();
+    }
+    return Encyton(in, key, ivec, cipher);
 }
 
 QByteArray EncytionAES::EncytonDataCBC(const QByteArray &in,
                                        const QByteArray &key,
                                        const QByteArray &ivec)
 {
+    const EVP_CIPHER *cipher = nullptr;
+    if (key.size() == KEY_SIZE_16B) {
+        cipher = EVP_aes_128_cbc();
+    } else if (key.size() == KEY_SIZE_24B) {
+        cipher = EVP_aes_192_cbc();
+    } else {
+        cipher = EVP_aes_256_cbc();
+    }
+    return Encyton(in, key, ivec, cipher);
 }
 
 QByteArray EncytionAES::EncytonDataCFB(const QByteArray &in,
                                        const QByteArray &key,
                                        const QByteArray &ivec)
 {
-    return "";
+    const EVP_CIPHER *cipher = nullptr;
+    if (key.size() == KEY_SIZE_16B) {
+        cipher = EVP_aes_128_cfb1();
+    } else if (key.size() == KEY_SIZE_24B) {
+        cipher = EVP_aes_192_cfb1();
+    } else {
+        cipher = EVP_aes_256_cfb1();
+    }
+    return Encyton(in, key, ivec, cipher);
 }
 
 QByteArray EncytionAES::EncytonDataOFB(const QByteArray &in,
                                        const QByteArray &key,
                                        const QByteArray &ivec)
 {
-    return "";
+    const EVP_CIPHER *cipher = nullptr;
+    if (key.size() == KEY_SIZE_16B) {
+        cipher = EVP_aes_128_cfb1();
+    } else if (key.size() == KEY_SIZE_24B) {
+        cipher = EVP_aes_192_cfb1();
+    } else {
+        cipher = EVP_aes_256_cfb1();
+    }
+    return Encyton(in, key, ivec, cipher);
 }
 
 QByteArray EncytionAES::EncytonDataCTR(const QByteArray &in,
                                        const QByteArray &key,
                                        const QByteArray &ivec)
 {
-    return "";
+    const EVP_CIPHER *cipher = nullptr;
+    if (key.size() == KEY_SIZE_16B) {
+        cipher = EVP_aes_128_ctr();
+    } else if (key.size() == KEY_SIZE_24B) {
+        cipher = EVP_aes_192_ctr();
+    } else {
+        cipher = EVP_aes_256_ctr();
+    }
+    return Encyton(in, key, ivec, cipher);
 }
 
 QByteArray EncytionAES::EncytonDataGCM(const QByteArray &in,
                                        const QByteArray &key,
                                        const QByteArray &ivec)
 {
-    return "";
+    const EVP_CIPHER *cipher = nullptr;
+    if (key.size() == KEY_SIZE_16B) {
+        cipher = EVP_aes_128_gcm();
+    } else if (key.size() == KEY_SIZE_24B) {
+        cipher = EVP_aes_192_gcm();
+    } else {
+        cipher = EVP_aes_256_gcm();
+    }
+    return Encyton(in, key, ivec, cipher);
 }
 
 QByteArray EncytionAES::EncytonDataCCM(const QByteArray &in,
                                        const QByteArray &key,
                                        const QByteArray &ivec)
 {
-    return "";
+    const EVP_CIPHER *cipher = nullptr;
+    if (key.size() == KEY_SIZE_16B) {
+        cipher = EVP_aes_128_gcm();
+    } else if (key.size() == KEY_SIZE_24B) {
+        cipher = EVP_aes_192_gcm();
+    } else {
+        cipher = EVP_aes_256_gcm();
+    }
+    return Encyton(in, key, ivec, cipher);
 }
 QByteArray EncytionAES::EncytonDataXTS(const QByteArray &in,
                                        const QByteArray &key,
                                        const QByteArray &ivec)
 {
-    return "";
+    const EVP_CIPHER *cipher = nullptr;
+    if (key.size() == KEY_SIZE_16B) {
+        cipher = EVP_aes_128_xts();
+    } else {
+        cipher = EVP_aes_256_xts();
+    }
+    return Encyton(in, key, ivec, cipher);
+}
+
+QByteArray EncytionAES::EncytonDataOCB(const QByteArray &in,
+                                       const QByteArray &key,
+                                       const QByteArray &ivec)
+{
+    const EVP_CIPHER *cipher = nullptr;
+    if (key.size() == KEY_SIZE_16B) {
+        cipher = EVP_aes_128_ocb();
+    } else if (key.size() == KEY_SIZE_24B) {
+        cipher = EVP_aes_192_ocb();
+    } else {
+        cipher = EVP_aes_256_ocb();
+    }
+    return Encyton(in, key, ivec, cipher);
 }
 
 QByteArray EncytionAES::Encyton(const QByteArray &in, const QByteArray &key,

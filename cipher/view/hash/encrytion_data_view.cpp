@@ -5,6 +5,7 @@
 #include "tools/hash/abstract_encytion.h"
 #include "tools/hash/encytion_md5.h"
 #include "tools/hash/encytion_data_job.h"
+#include <tools/tools.h>
 #include <QDebug>
 EncrytionDataView::EncrytionDataView(AbstractHashEncytion *encytion)
     : encytionJob_(new EncytionDataJob(encytion))
@@ -45,8 +46,7 @@ void EncrytionDataView::slotClickDoWork()
     encytionJob_->start();
 }
 
-void EncrytionDataView::slotEncrytionFinish(QString out)
+void EncrytionDataView::slotEncrytionFinish(QByteArray out)
 {
-    TxtEditMiWen_->setText(out);
-    qInfo() << "out:" << out;
+    TxtEditMiWen_->setText(Tools::QBarrayToHex(out,out.length()));
 }

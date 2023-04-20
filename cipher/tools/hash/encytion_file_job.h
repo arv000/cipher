@@ -13,7 +13,7 @@ class EncytionFileJob : public QThread {
     QString strOutFilePath_;
     void setData(QString strInFilePath);
    signals:
-    void sigFinish(QString out);
+    void sigFinish(QByteArray out);
    public slots:
 
     // QThread interface

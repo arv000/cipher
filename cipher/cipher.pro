@@ -45,12 +45,13 @@ SOURCES += \
     tools/tools.cpp \
     tools/symmetry/abstract_symmetry_encytion.cpp \
     tools/symmetry/encytion_aes.cpp \
-    view/symmetric/encryption_aes_view.cpp \
     view/symmetric/encryption_aes_data_view.cpp \
     view/symmetric/encryption_aes_file_view.cpp \
     view/symmetric/encryption_des_view.cpp \
     tools/symmetry/symmetry_encytion_job.cpp \
-    view/symmetric/encryption_sm4_view.cpp
+    tools/symmetry/encytion_des.cpp \
+    tools/symmetry/encytion_sm4.cpp \
+    view/symmetric/encryption_symmetric_bash_view.cpp
 
 HEADERS += \
         view/mainwindow.h \
@@ -70,12 +71,13 @@ HEADERS += \
         tools/tools.h \
         tools/symmetry/abstract_symmetry_encytion.h \
         tools/symmetry/encytion_aes.h \
-        view/symmetric/encryption_aes_view.h \
         view/symmetric/encryption_aes_data_view.h \
         view/symmetric/encryption_aes_file_view.h \
         view/symmetric/encryption_des_view.h \
         tools/symmetry/symmetry_encytion_job.h \
-    view/symmetric/encryption_sm4_view.h
+    tools/symmetry/encytion_des.h \
+    tools/symmetry/encytion_sm4.h \
+    view/symmetric/encryption_symmetric_bash_view.h
 
 
 
