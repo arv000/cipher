@@ -1,4 +1,4 @@
-#include "main_widget.h"
+﻿#include "main_widget.h"
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QHBoxLayout>

@@ -1,4 +1,4 @@
-#include "encryption_aes_data_view.h"
+﻿#include "encryption_aes_data_view.h"
 #include "tools/hash/encytion_sha256.h"
 #include <QDebug>
 EncryptionAESDataView::EncryptionAESDataView(AbstractSymmetryEncytion *encytion)
@@ -13,11 +13,11 @@ EncryptionAESDataView::EncryptionAESDataView(AbstractSymmetryEncytion *encytion)
     , LayoutMain_(new QVBoxLayout())
     , BtnEncytion_(new QPushButton("加密"))
     , BtnDecrypt_(new QPushButton("解密"))
-    , LayoutBtn_(new QHBoxLayout)
+    , LayoutBtn_(new QHBoxLayout())
     , labMingwen_(new QLabel("明文："))
-    , LEdtMingwen_(new QLineEdit)
-    , LayoutMingwen_(new QHBoxLayout)
-    , TEdtMiwen_(new QTextEdit)
+    , LEdtMingwen_(new QLineEdit())
+    , LayoutMingwen_(new QHBoxLayout())
+    , TEdtMiwen_(new QTextEdit())
 {
     init();
 }

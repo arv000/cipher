@@ -1,8 +1,8 @@
-#include "encytion_sm3.h"
+﻿#include "encytion_sm3.h"
 #include <QtDebug>
 #include <openssl/dh.h>
 #include <openssl/evp.h>
-#include <openssl/sm3.h>
+#include "openssl/sm3.h"
 #include "../tools.h"
 EncytionSM3::EncytionSM3(QObject *) {}
 

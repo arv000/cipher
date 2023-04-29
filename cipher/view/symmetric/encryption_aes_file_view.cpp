@@ -1,4 +1,4 @@
-#include "encryption_aes_file_view.h"
+﻿#include "encryption_aes_file_view.h"
 
 #include <QDebug>
 EncryptionAESFileView::EncryptionAESFileView(AbstractSymmetryEncytion *encytion)
@@ -16,9 +16,9 @@ EncryptionAESFileView::EncryptionAESFileView(AbstractSymmetryEncytion *encytion)
     , LayoutBtn_(new QHBoxLayout)
     , labMingwen_(new QLabel("文件："))
     , BtnSelectFile_(new QPushButton("选择文件"))
-    , LEdtMingwen_(new QLineEdit)
-    , LayoutMingwen_(new QHBoxLayout)
-    , TEdtMiwen_(new QTextEdit)
+    , LEdtMingwen_(new QLineEdit())
+    , LayoutMingwen_(new QHBoxLayout())
+    , TEdtMiwen_(new QTextEdit())
 {
     init();
 }
