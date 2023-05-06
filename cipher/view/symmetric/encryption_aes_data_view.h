@@ -49,8 +49,9 @@ class EncryptionAESDataView : public QWidget {
 
    public slots:
     void slotDoEncytion();
-    void slotDoEncytionFinish();
+    void slotDoEncytionFinish(QByteArray res);
     void slotDoDecrypt();
+    void slotDoDecryptFinish(QByteArray res);
 };
 
 #endif  // ENCRYPTION_AES_DATA_VIEW_H

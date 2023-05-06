@@ -21,5 +21,5 @@ void SymmetryEncytionJob::run()
         return;
     }
     QByteArray out = symmetryEncytion_->EncytonData(in_, key_, ivec_, mode_);
-    // emit sigFinish(out);
+    emit sigFinish(out);
 }

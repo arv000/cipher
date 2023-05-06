@@ -1,5 +1,6 @@
 ﻿#include "encryption_aes_data_view.h"
 #include "tools/hash/encytion_sha256.h"
+#include <tools/tools.h>
 #include <QDebug>
 EncryptionAESDataView::EncryptionAESDataView(AbstractSymmetryEncytion *encytion)
     : EncytionJob_(new SymmetryEncytionJob(encytion))
@@ -87,6 +88,8 @@ void EncryptionAESDataView::initConnect()
             &EncryptionAESDataView::slotDoEncytion);
     connect(BtnDecrypt_, &QPushButton::clicked, this,
             &EncryptionAESDataView::slotDoDecrypt);
+    connect(EncytionJob_, &SymmetryEncytionJob::sigFinish, this,
+            &EncryptionAESDataView::slotDoEncytionFinish);
 }
 
 QByteArray EncryptionAESDataView::getKey(QByteArray key)
@@ -149,7 +152,16 @@ void EncryptionAESDataView::slotDoEncytion()
             CBBAlgorithm_->itemData(CBBAlgorithm_->currentIndex()).toInt()));
     EncytionJob_->start();
 }
-
-void EncryptionAESDataView::slotDoEncytionFinish() {}
-
 void EncryptionAESDataView::slotDoDecrypt() { qInfo() << "slotDoDecrypt"; }
+
+void EncryptionAESDataView::slotDoDecryptFinish(QByteArray res)
+{
+
+}
+
+void EncryptionAESDataView::slotDoEncytionFinish(QByteArray res) {
+   QString str = Tools::QBarrayToHex(res,res.length());
+   TEdtMiwen_->setText(str);
+}
+
+

@@ -51,7 +51,9 @@ SOURCES += \
     tools/symmetry/symmetry_encytion_job.cpp \
     tools/symmetry/encytion_des.cpp \
     tools/symmetry/encytion_sm4.cpp \
-    view/symmetric/encryption_symmetric_bash_view.cpp
+    view/symmetric/encryption_symmetric_bash_view.cpp \
+    tools/symmetry/symmetry_decrypt_job.cpp \
+    tools/symmetry/abstract_symmetry_decrypt.cpp
 
 HEADERS += \
         view/mainwindow.h \
@@ -77,7 +79,10 @@ HEADERS += \
         tools/symmetry/symmetry_encytion_job.h \
     tools/symmetry/encytion_des.h \
     tools/symmetry/encytion_sm4.h \
-    view/symmetric/encryption_symmetric_bash_view.h
+    view/symmetric/encryption_symmetric_bash_view.h \
+    tools/symmetry/symmetry_decrypt_job.h \
+    tools/symmetry/abstract_symmetry_decrypt.h \
+    tools/symmetry/common.h
 
 
 
